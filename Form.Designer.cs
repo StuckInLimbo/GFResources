@@ -73,6 +73,7 @@
             this.buttonCalculate = new System.Windows.Forms.Button();
             this.labelOutput = new System.Windows.Forms.Label();
             this.labelMaterials = new System.Windows.Forms.Label();
+            this.labelOutputDrops = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numManpower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAmmo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRations)).BeginInit();
@@ -590,7 +591,7 @@
             // labelOutput
             // 
             this.labelOutput.AutoSize = true;
-            this.labelOutput.Location = new System.Drawing.Point(134, 485);
+            this.labelOutput.Location = new System.Drawing.Point(117, 472);
             this.labelOutput.Name = "labelOutput";
             this.labelOutput.Size = new System.Drawing.Size(37, 15);
             this.labelOutput.TabIndex = 12;
@@ -605,12 +606,22 @@
             this.labelMaterials.TabIndex = 13;
             this.labelMaterials.Text = "labelMaterials";
             // 
+            // labelOutputDrops
+            // 
+            this.labelOutputDrops.AutoSize = true;
+            this.labelOutputDrops.Location = new System.Drawing.Point(117, 495);
+            this.labelOutputDrops.Name = "labelOutputDrops";
+            this.labelOutputDrops.Size = new System.Drawing.Size(37, 15);
+            this.labelOutputDrops.TabIndex = 14;
+            this.labelOutputDrops.Text = "blank";
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(670, 519);
+            this.Controls.Add(this.labelOutputDrops);
             this.Controls.Add(this.labelMaterials);
             this.Controls.Add(this.labelOutput);
             this.Controls.Add(this.buttonCalculate);
@@ -691,6 +702,7 @@
         private System.Windows.Forms.Label labelMaterials;
         private System.Windows.Forms.Label labelHours;
         private System.Windows.Forms.NumericUpDown numHours;
+        private System.Windows.Forms.Label labelOutputDrops;
     }
 }
 

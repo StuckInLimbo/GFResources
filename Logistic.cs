@@ -8,25 +8,41 @@ namespace GFResources
 {
     class Logistic
     {
+        private static Drop emptyDrop = new Drop("", 0);
         private int manpower;
         private int ammunition;
         private int rations;
         private int parts;
         private float time;
-        private Drops drops;
+        private int numOfDrops;
+        private Drop drop1;
+        private Drop drop2;
 
-        private void Set(int manp, int ammo, int ration, int part, float timetaken)
+        private void Set(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1, Drop d2)
         {
             manpower = manp;
             ammunition = ammo;
             rations = ration;
             parts = part;
             time = timetaken;
+            numOfDrops = numDrops;
+            drop1 = d1;
+            drop2 = d2;
         }
 
         public Logistic(int manp, int ammo, int ration, int part, float timetaken)
         {
-            Set(manp, ammo, ration, part, timetaken);
+            Set(manp, ammo, ration, part, timetaken, 0, emptyDrop, emptyDrop);
+        }
+
+        public Logistic(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1)
+        {
+            Set(manp, ammo, ration, part, timetaken, numDrops, d1, emptyDrop);
+        }
+
+        public Logistic(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1, Drop d2)
+        {
+            Set(manp, ammo, ration, part, timetaken, numDrops, d1, d2);
         }
 
         //Getters and setters
@@ -78,6 +94,34 @@ namespace GFResources
         public void SetTime(float t)
         {
             time = t;
+        }
+
+        public int GetNumOfDrops()
+        {
+            return numOfDrops;
+        }
+
+        public void SetNumOfDrops(int n)
+        {
+            numOfDrops = n;
+        }
+
+        public Drop GetDrop(int num)
+        {
+            if (num == 1)
+                return drop1;
+            else if (num == 2)
+                return drop2;
+            else
+                return emptyDrop;
+        }
+
+        public void SetDrop(int num, Drop d)
+        {
+            if (num == 1)
+                drop1 = d;
+            else if (num == 2)
+                drop2 = d;
         }
     }
 }

@@ -12,12 +12,13 @@ namespace GFResources
 {
     public partial class Form : System.Windows.Forms.Form
     {
-        Mission missions = new Mission();
+        Mission missions;
 
         public Form()
         {
             InitializeComponent();
             reset();
+            missions = new Mission();
         }
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -27,6 +28,7 @@ namespace GFResources
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            labelOutputDrops.Text = "";
             calcResources();
             calcLogistics();
         }
@@ -45,9 +47,13 @@ namespace GFResources
             int partDifference = GetDifference((int)numParts.Value, (int)numPartsDesired.Value);
             //Manp, ammo and rations are generated at 3 per 3min, parts are generated at 1 per 3min
             double manTime = (double)manpowerDifference / 60;
+            manTime = Math.Round(manTime, 2, MidpointRounding.AwayFromZero);
             double ammoTime = (double)ammoDifference / 60;
+            ammoTime = Math.Round(ammoTime, 2, MidpointRounding.AwayFromZero);
             double rationsTime = (double)rationDifference / 60;
+            rationsTime = Math.Round(rationsTime, 2, MidpointRounding.AwayFromZero);
             double partTime = (double)partDifference / 20;
+            partTime = Math.Round(partTime, 2, MidpointRounding.AwayFromZero);
 
             labelMaterials.Text = "ManP: " + manTime + " hours | Ammo: " + ammoTime + " hours | Rations: "
                 + rationsTime + " hours | Parts: " + partTime + " hours";
@@ -55,11 +61,14 @@ namespace GFResources
 
         private void calcLogistics()
         {
-            //        0     1      2      3        4
-            //data { man, ammo, rations, parts, (int)time };
+            //        0     1      2      3        4            5       6   7
+            //data { man, ammo, rations, parts, (int)time , numOfDrops, d1, d2};
             int[] e1, e2, e3, e4;
             double manph = 0, ammoph = 0, rationsph = 0, partsph = 0;
             double hours = 0;
+            int numDrops = 0;
+
+            //Echelon 1
             e1 = calcE1();
             hours = e1[4];
             if(hours >= 60)
@@ -77,6 +86,9 @@ namespace GFResources
                 rationsph = rationsph + (e1[2] * remainder);
                 partsph = partsph + (e1[3] * remainder);
             }
+            numDrops += e1[5];
+
+            //Echelon 2
             e2 = calcE2();
             hours = e2[4];
             if (hours >= 60)
@@ -94,6 +106,9 @@ namespace GFResources
                 rationsph = rationsph + (e2[2] * remainder);
                 partsph = partsph + (e2[3] * remainder);
             }
+            numDrops += e2[5];
+
+            //Echelon 3
             e3 = calcE3();
             hours = e3[4];
             if (hours >= 60)
@@ -111,6 +126,9 @@ namespace GFResources
                 rationsph = rationsph + (e3[2] * remainder);
                 partsph = partsph + (e3[3] * remainder);
             }
+            numDrops += e3[5];
+
+            //Echelon 4
             e4 = calcE4();
             hours = e4[4];
             if (hours >= 60)
@@ -128,18 +146,117 @@ namespace GFResources
                 rationsph = rationsph + (e4[2] * remainder);
                 partsph = partsph + (e4[3] * remainder);
             }
+            numDrops += e4[5];
+
+            //Totals
             manph = manph * (double)numHours.Value;
+            manph = Math.Round(manph, 2, MidpointRounding.AwayFromZero);
             ammoph = ammoph * (double)numHours.Value;
+            ammoph = Math.Round(ammoph, 2, MidpointRounding.AwayFromZero);
             rationsph = rationsph * (double)numHours.Value;
+            rationsph = Math.Round(rationsph, 2, MidpointRounding.AwayFromZero);
             partsph = partsph * (double)numHours.Value;
-            labelOutput.Text = "ManP/h: " + manph + " | Ammo/h: " + ammoph + " | Rations/h: " + rationsph + " | Parts/h: " + partsph;
+            partsph = Math.Round(partsph, 2, MidpointRounding.AwayFromZero);
+            labelOutput.Text = "ManP/h: " + manph + " | Ammo/h: " + ammoph 
+                + " | Rations/h: " + rationsph + " | Parts/h: " + partsph;
+
+            //Drops
+            int[] drops = new int[numDrops];
+            int tDoll = 0, equip = 0, repair = 0, construct = 0, token = 0;
+            int count = 0;
+            if(e1[5] > 0)
+            {
+                if(e1[5] == 1)
+                {
+                    drops[count] = e1[6];
+                    count++;
+                }
+                else if(e1[5] == 2)
+                {
+                    drops[count] = e1[6];
+                    count++;
+                    drops[count] = e1[7];
+                    count++;
+                }
+            }
+            if(e2[5] > 0)
+            {
+                if (e2[5] == 1)
+                {
+                    drops[count] = e2[6];
+                    count++;
+                }
+                else if (e2[5] == 2)
+                {
+                    drops[count] = e2[6];
+                    count++;
+                    drops[count] = e2[7];
+                    count++;
+                }
+            }
+            if(e3[5] > 0)
+            {
+                if (e3[5] == 1)
+                {
+                    drops[count] = e3[6];
+                    count++;
+                }
+                else if (e3[5] == 2)
+                {
+                    drops[count] = e3[6];
+                    count++;
+                    drops[count] = e3[7];
+                    count++;
+                }
+            }
+            if(e4[5] > 0)
+            {
+                if (e4[5] == 1)
+                {
+                    drops[count] = e4[6];
+                    count++;
+                }
+                else if (e4[5] == 2)
+                {
+                    drops[count] = e4[6];
+                    count++;
+                    drops[count] = e4[7];
+                    count++;
+                }
+            }
+            for(int i = 0; i < numDrops; i++)
+            {
+                switch(drops[i])
+                {
+                    case 0:
+                        break;
+                    case 1:
+                        tDoll++;
+                        break;
+                    case 2:
+                        equip++;
+                        break;
+                    case 3:
+                        repair++;
+                        break;
+                    case 4:
+                        construct++;
+                        break;
+                    case 5:
+                        token++;
+                        break;
+                }
+            }
+            labelOutputDrops.Text = "T-Doll Contracts: " + tDoll + " | Equipment Contracts: " + equip 
+                + " | Instant Repair: " + repair + " | Instant Construction: " + construct + " | Tokens: " + token;
         }
 
         private int[] calcE1()
         {
             Logistic logi = null;
-            int man, ammo, rations, parts;
-            double time;
+            int man, ammo, rations, parts, drops;
+            Drop d1, d2;
+            double time, smalltime;
             labelE1Resources.Text = "";
             if (comboE1Chapter.SelectedIndex == 0)
             {
@@ -273,34 +390,55 @@ namespace GFResources
             else
             {
                 //fallback
-                logi = missions.empty;
+                logi = missions.emptyMission;
             }
+            //Resources
             man = logi.GetManpower();
             ammo = logi.GetAmmo();
             rations = logi.GetRations();
             parts = logi.GetParts();
             time = logi.GetTime();
-            int[] data = new int[] { man, ammo, rations, parts, (int)time };
             String sTime = "";
             if (time >= 60)
             {
-                time = time / 60;
-                sTime = "" + time + "h";
+                smalltime = time / 60;
+                sTime = "" + smalltime + "h";
             }
             else
             {
                 sTime = "" + time + "min";
             }
-            labelE1Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: "
-                + rations + " | Parts: " + parts + " | Time: " + sTime;
+            labelE1Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: " + rations + " | Parts: " + parts + " | Time: " + sTime;
+            //Drops
+            drops = logi.GetNumOfDrops();
+            if(logi.GetNumOfDrops() == 1)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = new Drop("", 0);
+                //labelOutputDrops.Text = labelOutputDrops.Text + " " + logi.GetDrop(1).GetName() + ", ";
+            }
+            else if (logi.GetNumOfDrops() == 2)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = logi.GetDrop(2);
+                //labelOutputDrops.Text = labelOutputDrops.Text + d1.GetName() + ", ";
+                //labelOutputDrops.Text = labelOutputDrops.Text + d2.GetName() + ", ";
+            }
+            else
+            {
+                d1 = new Drop("", 0);
+                d2 = new Drop("", 0);
+            }
+            int[] data = new int[] { man, ammo, rations, parts, (int)time, drops, d1.GetID(), d2.GetID() };
             return data;
         }
 
         private int[] calcE2()
         {
             Logistic logi = null;
-            int man, ammo, rations, parts;
-            double time;
+            int man, ammo, rations, parts, drops;
+            Drop d1, d2;
+            double time, smalltime;
             labelE3Resources.Text = "";
             if (comboE2Chapter.SelectedIndex == 0)
             {
@@ -434,35 +572,55 @@ namespace GFResources
             else
             {
                 //fallback
-                logi = missions.empty;
+                logi = missions.emptyMission;
             }
+            //Resources
             man = logi.GetManpower();
             ammo = logi.GetAmmo();
             rations = logi.GetRations();
             parts = logi.GetParts();
             time = logi.GetTime();
             String sTime = "";
-            int[] data = new int[] { man, ammo, rations, parts, (int)time };
             if (time >= 60)
             {
-                time = time / 60;
-                sTime = "" + time + "h";
+                smalltime = time / 60;
+                sTime = "" + smalltime + "h";
             }
             else
             {
                 sTime = "" + time + "min";
             }
-
-            labelE2Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: "
-                + rations + " | Parts: " + parts + " | Time: " + sTime;
+            labelE2Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: " + rations + " | Parts: " + parts + " | Time: " + sTime;
+            //Drops
+            drops = logi.GetNumOfDrops();
+            if (logi.GetNumOfDrops() == 1)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = new Drop("", 0);
+                //labelOutputDrops.Text = labelOutputDrops.Text + " " + logi.GetDrop(1).GetName() + ", ";
+            }
+            else if (logi.GetNumOfDrops() == 2)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = logi.GetDrop(2);
+                //labelOutputDrops.Text = labelOutputDrops.Text + d1.GetName() + ", ";
+                //labelOutputDrops.Text = labelOutputDrops.Text + d2.GetName() + ", ";
+            }
+            else
+            {
+                d1 = new Drop("", 0);
+                d2 = new Drop("", 0);
+            }
+            int[] data = new int[] { man, ammo, rations, parts, (int)time, drops, d1.GetID(), d2.GetID() };
             return data;
         }
 
         private int[] calcE3()
         {
             Logistic logi = null;
-            int man, ammo, rations, parts;
-            double time;
+            int man, ammo, rations, parts, drops;
+            Drop d1, d2;
+            double time, smalltime;
             labelE3Resources.Text = "";
             if (comboE3Chapter.SelectedIndex == 0)
             {
@@ -596,35 +754,55 @@ namespace GFResources
             else
             {
                 //fallback
-                logi = missions.empty;
+                logi = missions.emptyMission;
             }
+            //Resources
             man = logi.GetManpower();
             ammo = logi.GetAmmo();
             rations = logi.GetRations();
             parts = logi.GetParts();
             time = logi.GetTime();
             String sTime = "";
-            int[] data = new int[] { man, ammo, rations, parts, (int)time };
             if (time >= 60)
             {
-                time = time / 60;
-                sTime = "" + time + "h";
+                smalltime = time / 60;
+                sTime = "" + smalltime + "h";
             }
             else
             {
                 sTime = "" + time + "min";
             }
-
-            labelE3Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: "
-                + rations + " | Parts: " + parts + " | Time: " + sTime;
+            labelE3Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: " + rations + " | Parts: " + parts + " | Time: " + sTime;
+            //Drops
+            drops = logi.GetNumOfDrops();
+            if (logi.GetNumOfDrops() == 1)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = new Drop("", 0);
+                //labelOutputDrops.Text = labelOutputDrops.Text + " " + logi.GetDrop(1).GetName() + ", ";
+            }
+            else if (logi.GetNumOfDrops() == 2)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = logi.GetDrop(2);
+                //labelOutputDrops.Text = labelOutputDrops.Text + d1.GetName() + ", ";
+                //labelOutputDrops.Text = labelOutputDrops.Text + d2.GetName() + ", ";
+            }
+            else
+            {
+                d1 = new Drop("", 0);
+                d2 = new Drop("", 0);
+            }
+            int[] data = new int[] { man, ammo, rations, parts, (int)time, drops, d1.GetID(), d2.GetID() };
             return data;
         }
 
         private int[] calcE4()
         {
             Logistic logi = null;
-            int man, ammo, rations, parts;
-            double time;
+            int man, ammo, rations, parts, drops;
+            Drop d1, d2;
+            double time, smalltime;
             labelE4Resources.Text = "";
             if (comboE4Chapter.SelectedIndex == 0)
             {
@@ -758,27 +936,46 @@ namespace GFResources
             else
             {
                 //fallback
-                logi = missions.empty;
+                logi = missions.emptyMission;
             }
+            //Resources
             man = logi.GetManpower();
             ammo = logi.GetAmmo();
             rations = logi.GetRations();
             parts = logi.GetParts();
             time = logi.GetTime();
             String sTime = "";
-            int[] data = new int[] { man, ammo, rations, parts, (int)time };
             if (time >= 60)
             {
-                time = time / 60;
-                sTime = "" + time + "h";
+                smalltime = time / 60;
+                sTime = "" + smalltime + "h";
             }
             else
             {
                 sTime = "" + time + "min";
             }
-
-            labelE4Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: "
-                + rations + " | Parts: " + parts + " | Time: " + sTime;
+            labelE4Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: " + rations + " | Parts: " + parts + " | Time: " + sTime;
+            //Drops
+            drops = logi.GetNumOfDrops();
+            if (logi.GetNumOfDrops() == 1)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = new Drop("", 0);
+                //labelOutputDrops.Text = labelOutputDrops.Text + " " + logi.GetDrop(1).GetName() + ", ";
+            }
+            else if (logi.GetNumOfDrops() == 2)
+            {
+                d1 = logi.GetDrop(1);
+                d2 = logi.GetDrop(2);
+                //labelOutputDrops.Text = labelOutputDrops.Text + d1.GetName() + ", ";
+                //labelOutputDrops.Text = labelOutputDrops.Text + d2.GetName() + ", ";
+            }
+            else
+            {
+                d1 = new Drop("", 0);
+                d2 = new Drop("", 0);
+            }
+            int[] data = new int[] { man, ammo, rations, parts, (int)time, drops, d1.GetID(), d2.GetID() };
             return data;
         }
 
@@ -795,6 +992,7 @@ namespace GFResources
             labelE3Resources.Text = "";
             labelE4Resources.Text = "";
             labelOutput.Text = "";
+            labelOutputDrops.Text = "";
             numManpower.Value = 0;
             numAmmo.Value = 0;
             numRations.Value = 0;
