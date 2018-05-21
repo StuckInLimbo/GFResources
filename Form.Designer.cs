@@ -372,7 +372,7 @@
             // 
             this.numHours.Location = new System.Drawing.Point(59, 25);
             this.numHours.Maximum = new decimal(new int[] {
-            24,
+            144,
             0,
             0,
             0});
@@ -382,7 +382,7 @@
             0,
             0});
             this.numHours.Name = "numHours";
-            this.numHours.Size = new System.Drawing.Size(43, 21);
+            this.numHours.Size = new System.Drawing.Size(45, 21);
             this.numHours.TabIndex = 16;
             this.numHours.Value = new decimal(new int[] {
             1,

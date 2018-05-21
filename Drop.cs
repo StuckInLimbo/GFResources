@@ -20,11 +20,20 @@ namespace GFResources
 
         private String name;
         private int id;
+        private double hours;
 
         public Drop(String n, int idNum)
         {
             name = n;
             id = idNum;
+            hours = 0;
+        }
+
+        public Drop(String n, int idNum, double h)
+        {
+            name = n;
+            id = idNum;
+            hours = h;
         }
 
         public String GetName()
@@ -45,6 +54,11 @@ namespace GFResources
         public void SetID(int i)
         {
             id = i;
+        }
+
+        public double GetHours()
+        {
+            return hours;
         }
     }
 }

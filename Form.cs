@@ -161,94 +161,101 @@ namespace GFResources
                 + " | Rations/h: " + rationsph + " | Parts/h: " + partsph;
 
             //Drops
-            int[] drops = new int[numDrops];
+            Drop[] drops = new Drop[numDrops];
             int tDoll = 0, equip = 0, repair = 0, construct = 0, token = 0;
+            int tDollph = 0, equipph = 0, repairph = 0, constructph = 0, tokenph = 0;
             int count = 0;
             if(e1[5] > 0)
             {
                 if(e1[5] == 1)
                 {
-                    drops[count] = e1[6];
+                    drops[count] = GetDropFromID(e1[6], e1[4]);
                     count++;
                 }
                 else if(e1[5] == 2)
                 {
-                    drops[count] = e1[6];
+                    drops[count] = GetDropFromID(e1[6], e1[4]);
                     count++;
-                    drops[count] = e1[7];
+                    drops[count] = GetDropFromID(e1[7], e1[4]);
                     count++;
                 }
             }
             if(e2[5] > 0)
             {
-                if (e2[5] == 1)
+                if (e1[5] == 1)
                 {
-                    drops[count] = e2[6];
+                    drops[count] = GetDropFromID(e2[6], e2[4]);
                     count++;
                 }
-                else if (e2[5] == 2)
+                else if (e1[5] == 2)
                 {
-                    drops[count] = e2[6];
+                    drops[count] = GetDropFromID(e2[6], e2[4]);
                     count++;
-                    drops[count] = e2[7];
+                    drops[count] = GetDropFromID(e2[7], e2[4]);
                     count++;
                 }
             }
             if(e3[5] > 0)
             {
-                if (e3[5] == 1)
+                if (e1[5] == 1)
                 {
-                    drops[count] = e3[6];
+                    drops[count] = GetDropFromID(e3[6], e3[4]);
                     count++;
                 }
-                else if (e3[5] == 2)
+                else if (e1[5] == 2)
                 {
-                    drops[count] = e3[6];
+                    drops[count] = GetDropFromID(e3[6], e3[4]);
                     count++;
-                    drops[count] = e3[7];
+                    drops[count] = GetDropFromID(e3[7], e3[4]);
                     count++;
                 }
             }
             if(e4[5] > 0)
             {
-                if (e4[5] == 1)
+                if (e1[5] == 1)
                 {
-                    drops[count] = e4[6];
+                    drops[count] = GetDropFromID(e4[6], e4[4]);
                     count++;
                 }
-                else if (e4[5] == 2)
+                else if (e1[5] == 2)
                 {
-                    drops[count] = e4[6];
+                    drops[count] = GetDropFromID(e4[6], e4[4]);
                     count++;
-                    drops[count] = e4[7];
+                    drops[count] = GetDropFromID(e4[7], e4[4]);
                     count++;
                 }
             }
+
             for(int i = 0; i < numDrops; i++)
             {
-                switch(drops[i])
+                switch(drops[i].GetID())
                 {
                     case 0:
                         break;
                     case 1:
                         tDoll++;
+                        tDollph = ((int)numHours.Value * 60) / (int)drops[i].GetHours();
                         break;
                     case 2:
                         equip++;
+                        equipph = ((int)numHours.Value * 60) / (int)drops[i].GetHours();
                         break;
                     case 3:
                         repair++;
+                        repairph = ((int)numHours.Value * 60) / (int)drops[i].GetHours();
                         break;
                     case 4:
                         construct++;
+                        constructph = ((int)numHours.Value * 60) / (int)drops[i].GetHours();
                         break;
                     case 5:
                         token++;
+                        tokenph = ((int)numHours.Value * 60) / (int)drops[i].GetHours();
                         break;
                 }
             }
-            labelOutputDrops.Text = "T-Doll Contracts: " + tDoll + " | Equipment Contracts: " + equip 
-                + " | Instant Repair: " + repair + " | Instant Construction: " + construct + " | Tokens: " + token;
+            labelOutputDrops.Text = "T-Doll Contracts: " + tDollph + " | Equipment Contracts: " + equipph
+                + " | Instant Repair: " + repairph + " | Instant Construction: " + constructph + " | Tokens: " + tokenph;
         }
 
         private int[] calcE1()
@@ -1001,6 +1008,48 @@ namespace GFResources
             numAmmoDesired.Value = 0;
             numRationsDesired.Value = 0;
             numPartsDesired.Value = 0;
+        }
+
+        private Drop GetDropFromID(int idNum)
+        {
+            switch(idNum)
+            {
+                case 0:
+                    return new Drop("", 0);
+                case 1:
+                    return new Drop("T-Doll Contact", 1);
+                case 2:
+                    return new Drop("Equipment Contract", 2);
+                case 3:
+                    return new Drop("Instant Construction", 3);
+                case 4:
+                    return new Drop("Instant Repair", 4);
+                case 5:
+                    return new Drop("Token", 5);
+                default:
+                    return new Drop("", 0);
+            }
+        }
+
+        private Drop GetDropFromID(int idNum, double hours)
+        {
+            switch (idNum)
+            {
+                case 0:
+                    return new Drop("", 0, 0);
+                case 1:
+                    return new Drop("T-Doll Contact", 1, hours);
+                case 2:
+                    return new Drop("Equipment Contract", 2, hours);
+                case 3:
+                    return new Drop("Instant Construction", 3, hours);
+                case 4:
+                    return new Drop("Instant Repair", 4, hours);
+                case 5:
+                    return new Drop("Token", 5, hours);
+                default:
+                    return new Drop("", 0, 0);
+            }
         }
     }
 }
