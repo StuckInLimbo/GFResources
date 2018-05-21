@@ -182,12 +182,12 @@ namespace GFResources
             }
             if(e2[5] > 0)
             {
-                if (e1[5] == 1)
+                if (e2[5] == 1)
                 {
                     drops[count] = GetDropFromID(e2[6], e2[4]);
                     count++;
                 }
-                else if (e1[5] == 2)
+                else if (e2[5] == 2)
                 {
                     drops[count] = GetDropFromID(e2[6], e2[4]);
                     count++;
@@ -197,12 +197,12 @@ namespace GFResources
             }
             if(e3[5] > 0)
             {
-                if (e1[5] == 1)
+                if (e3[5] == 1)
                 {
                     drops[count] = GetDropFromID(e3[6], e3[4]);
                     count++;
                 }
-                else if (e1[5] == 2)
+                else if (e3[5] == 2)
                 {
                     drops[count] = GetDropFromID(e3[6], e3[4]);
                     count++;
@@ -212,12 +212,12 @@ namespace GFResources
             }
             if(e4[5] > 0)
             {
-                if (e1[5] == 1)
+                if (e4[5] == 1)
                 {
                     drops[count] = GetDropFromID(e4[6], e4[4]);
                     count++;
                 }
-                else if (e1[5] == 2)
+                else if (e4[5] == 2)
                 {
                     drops[count] = GetDropFromID(e4[6], e4[4]);
                     count++;
