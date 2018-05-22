@@ -23,7 +23,7 @@ namespace GFResources
 
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //popup about menu
+            System.Windows.Forms.MessageBox.Show("Made by StuckInLimbo (UID:41038)", "About GF Calculator");
         }
 
         private void buttonCalculate_Click(object sender, EventArgs e)
@@ -38,6 +38,11 @@ namespace GFResources
             reset();
         }
 
+        private void numHours_ValueChanged(object sender, EventArgs e)
+        {
+            labelOutputDrops.Text = "";
+            calcLogistics();
+        }
 
         private void calcResources()
         {
