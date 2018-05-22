@@ -399,6 +399,90 @@ namespace GFResources
                         break;
                 }
             }
+            else if (comboE1Chapter.SelectedIndex == 7)
+            {
+                switch (comboE1Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c7e1;
+                        break;
+                    case 1:
+                        logi = missions.c7e2;
+                        break;
+                    case 2:
+                        logi = missions.c7e3;
+                        break;
+                    case 3:
+                        logi = missions.c7e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE1Chapter.SelectedIndex == 8)
+            {
+                switch (comboE1Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c8e1;
+                        break;
+                    case 1:
+                        logi = missions.c8e2;
+                        break;
+                    case 2:
+                        logi = missions.c8e3;
+                        break;
+                    case 3:
+                        logi = missions.c8e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE1Chapter.SelectedIndex == 9)
+            {
+                switch (comboE1Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c9e1;
+                        break;
+                    case 1:
+                        logi = missions.c9e2;
+                        break;
+                    case 2:
+                        logi = missions.c9e3;
+                        break;
+                    case 3:
+                        logi = missions.c9e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE1Chapter.SelectedIndex == 10)
+            {
+                switch (comboE1Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c10e1;
+                        break;
+                    case 1:
+                        logi = missions.c10e2;
+                        break;
+                    case 2:
+                        logi = missions.c10e3;
+                        break;
+                    case 3:
+                        logi = missions.c10e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
             else
             {
                 //fallback
@@ -575,6 +659,90 @@ namespace GFResources
                         break;
                     case 3:
                         logi = missions.c6e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE2Chapter.SelectedIndex == 7)
+            {
+                switch (comboE2Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c7e1;
+                        break;
+                    case 1:
+                        logi = missions.c7e2;
+                        break;
+                    case 2:
+                        logi = missions.c7e3;
+                        break;
+                    case 3:
+                        logi = missions.c7e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE2Chapter.SelectedIndex == 8)
+            {
+                switch (comboE2Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c8e1;
+                        break;
+                    case 1:
+                        logi = missions.c8e2;
+                        break;
+                    case 2:
+                        logi = missions.c8e3;
+                        break;
+                    case 3:
+                        logi = missions.c8e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE2Chapter.SelectedIndex == 9)
+            {
+                switch (comboE2Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c9e1;
+                        break;
+                    case 1:
+                        logi = missions.c9e2;
+                        break;
+                    case 2:
+                        logi = missions.c9e3;
+                        break;
+                    case 3:
+                        logi = missions.c9e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE2Chapter.SelectedIndex == 10)
+            {
+                switch (comboE2Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c10e1;
+                        break;
+                    case 1:
+                        logi = missions.c10e2;
+                        break;
+                    case 2:
+                        logi = missions.c10e3;
+                        break;
+                    case 3:
+                        logi = missions.c10e4;
                         break;
                     default:
                         logi = null;
@@ -763,6 +931,90 @@ namespace GFResources
                         break;
                 }
             }
+            else if (comboE3Chapter.SelectedIndex == 7)
+            {
+                switch (comboE3Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c7e1;
+                        break;
+                    case 1:
+                        logi = missions.c7e2;
+                        break;
+                    case 2:
+                        logi = missions.c7e3;
+                        break;
+                    case 3:
+                        logi = missions.c7e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE3Chapter.SelectedIndex == 8)
+            {
+                switch (comboE3Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c8e1;
+                        break;
+                    case 1:
+                        logi = missions.c8e2;
+                        break;
+                    case 2:
+                        logi = missions.c8e3;
+                        break;
+                    case 3:
+                        logi = missions.c8e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE3Chapter.SelectedIndex == 9)
+            {
+                switch (comboE3Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c9e1;
+                        break;
+                    case 1:
+                        logi = missions.c9e2;
+                        break;
+                    case 2:
+                        logi = missions.c9e3;
+                        break;
+                    case 3:
+                        logi = missions.c9e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE3Chapter.SelectedIndex == 10)
+            {
+                switch (comboE3Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c10e1;
+                        break;
+                    case 1:
+                        logi = missions.c10e2;
+                        break;
+                    case 2:
+                        logi = missions.c10e3;
+                        break;
+                    case 3:
+                        logi = missions.c10e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
             else
             {
                 //fallback
@@ -939,6 +1191,90 @@ namespace GFResources
                         break;
                     case 3:
                         logi = missions.c6e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE4Chapter.SelectedIndex == 7)
+            {
+                switch (comboE4Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c7e1;
+                        break;
+                    case 1:
+                        logi = missions.c7e2;
+                        break;
+                    case 2:
+                        logi = missions.c7e3;
+                        break;
+                    case 3:
+                        logi = missions.c7e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE4Chapter.SelectedIndex == 8)
+            {
+                switch (comboE4Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c8e1;
+                        break;
+                    case 1:
+                        logi = missions.c8e2;
+                        break;
+                    case 2:
+                        logi = missions.c8e3;
+                        break;
+                    case 3:
+                        logi = missions.c8e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE4Chapter.SelectedIndex == 9)
+            {
+                switch (comboE4Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c9e1;
+                        break;
+                    case 1:
+                        logi = missions.c9e2;
+                        break;
+                    case 2:
+                        logi = missions.c9e3;
+                        break;
+                    case 3:
+                        logi = missions.c9e4;
+                        break;
+                    default:
+                        logi = null;
+                        break;
+                }
+            }
+            else if (comboE4Chapter.SelectedIndex == 10)
+            {
+                switch (comboE4Map.SelectedIndex)
+                {
+                    case 0:
+                        logi = missions.c10e1;
+                        break;
+                    case 1:
+                        logi = missions.c10e2;
+                        break;
+                    case 2:
+                        logi = missions.c10e3;
+                        break;
+                    case 3:
+                        logi = missions.c10e4;
                         break;
                     default:
                         logi = null;

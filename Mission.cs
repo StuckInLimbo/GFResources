@@ -60,6 +60,26 @@ namespace GFResources
         public Logistic c6e2;
         public Logistic c6e3;
         public Logistic c6e4;
+        //Chapter 7
+        public Logistic c7e1;
+        public Logistic c7e2;
+        public Logistic c7e3;
+        public Logistic c7e4;
+        //Chapter 8
+        public Logistic c8e1;
+        public Logistic c8e2;
+        public Logistic c8e3;
+        public Logistic c8e4;
+        //Chapter 9
+        public Logistic c9e1;
+        public Logistic c9e2;
+        public Logistic c9e3;
+        public Logistic c9e4;
+        //Chapter 10
+        public Logistic c10e1;
+        public Logistic c10e2;
+        public Logistic c10e3;
+        public Logistic c10e4;
 
         public Mission()
         {
@@ -106,6 +126,26 @@ namespace GFResources
             c6e2 = new Logistic(0, 200, 550, 100, 180, 2, construct, equip);
             c6e3 = new Logistic(0, 0, 200, 500, 300, 1, equip);
             c6e4 = new Logistic(800, 800, 800, 0, 720, 1, token);
+            //Chapter 7
+            c7e1 = new Logistic(650, 0, 650, 0, 150);
+            c7e2 = new Logistic(0, 650, 0, 300, 240, 2, construct, repair);
+            c7e3 = new Logistic(900, 600, 600, 0, 330, 1, equip);
+            c7e4 = new Logistic(250, 250, 250, 600, 480, 1, construct);
+            //Chapter 8
+            c8e1 = new Logistic(150, 150, 150, 0, 60, 1, equip);
+            c8e2 = new Logistic(0, 0, 0, 450, 180, 1, repair);
+            c8e3 = new Logistic(400, 600, 800, 0, 360, 2, construct, repair);
+            c8e4 = new Logistic(1500, 400, 400, 100, 540, 1, tDoll);
+            //Chapter 9
+            c9e1 = new Logistic(0, 0, 100, 50, 30);
+            c9e2 = new Logistic(180, 0, 180, 100, 90, 1, construct);
+            c9e3 = new Logistic(750, 750, 0, 0, 270, 1, tDoll);
+            c9e4 = new Logistic(500, 900, 900, 0, 420, 1, equip);
+            //Chapter 10
+            c10e1 = new Logistic(140, 200, 0, 0, 40);
+            c10e2 = new Logistic(0, 240, 180, 0, 100, 2, tDoll, construct);
+            c10e3 = new Logistic(0, 480, 480, 300, 320, 2, construct, repair);
+            c10e4 = new Logistic(660, 660, 660, 360, 600, 1, equip);
         }
     }
 }

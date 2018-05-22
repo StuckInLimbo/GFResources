@@ -441,7 +441,11 @@
             "Chapter 3",
             "Chapter 4",
             "Chapter 5",
-            "Chapter 6"});
+            "Chapter 6",
+            "Chapter 7",
+            "Chapter 8",
+            "Chapter 9",
+            "Chapter 10"});
             this.comboE4Chapter.Location = new System.Drawing.Point(8, 302);
             this.comboE4Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE4Chapter.Name = "comboE4Chapter";
@@ -490,7 +494,11 @@
             "Chapter 3",
             "Chapter 4",
             "Chapter 5",
-            "Chapter 6"});
+            "Chapter 6",
+            "Chapter 7",
+            "Chapter 8",
+            "Chapter 9",
+            "Chapter 10"});
             this.comboE3Chapter.Location = new System.Drawing.Point(8, 233);
             this.comboE3Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE3Chapter.Name = "comboE3Chapter";
@@ -539,7 +547,11 @@
             "Chapter 3",
             "Chapter 4",
             "Chapter 5",
-            "Chapter 6"});
+            "Chapter 6",
+            "Chapter 7",
+            "Chapter 8",
+            "Chapter 9",
+            "Chapter 10"});
             this.comboE2Chapter.Location = new System.Drawing.Point(8, 160);
             this.comboE2Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE2Chapter.Name = "comboE2Chapter";
@@ -588,7 +600,11 @@
             "Chapter 3",
             "Chapter 4",
             "Chapter 5",
-            "Chapter 6"});
+            "Chapter 6",
+            "Chapter 7",
+            "Chapter 8",
+            "Chapter 9",
+            "Chapter 10"});
             this.comboE1Chapter.Location = new System.Drawing.Point(8, 90);
             this.comboE1Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE1Chapter.Name = "comboE1Chapter";
