@@ -8,6 +8,11 @@ namespace GFResources
 {
     class Logistic
     {
+        /* Logistic.cs
+         * Class to handle storing all Mission info in nice, convinent objects
+         */
+
+        //emptyDrop is set for Logistics with no Drops, so we dont get NullPtr
         private static Drop emptyDrop = new Drop("", 0);
         private int manpower;
         private int ammunition;
@@ -18,6 +23,8 @@ namespace GFResources
         private Drop drop1;
         private Drop drop2;
 
+
+        //Set method to assign all values, called from contstructor
         private void Set(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1, Drop d2)
         {
             manpower = manp;
@@ -30,16 +37,20 @@ namespace GFResources
             drop2 = d2;
         }
 
+        //Contructors
+        //Constructor with no drops
         public Logistic(int manp, int ammo, int ration, int part, float timetaken)
         {
             Set(manp, ammo, ration, part, timetaken, 0, emptyDrop, emptyDrop);
         }
 
+        //Constructor with 1 drop
         public Logistic(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1)
         {
             Set(manp, ammo, ration, part, timetaken, numDrops, d1, emptyDrop);
         }
 
+        //Constructor with 2 drops
         public Logistic(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1, Drop d2)
         {
             Set(manp, ammo, ration, part, timetaken, numDrops, d1, d2);

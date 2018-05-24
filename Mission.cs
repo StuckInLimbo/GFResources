@@ -8,7 +8,15 @@ namespace GFResources
 {
     class Mission
     {
-        public enum drop_ids
+        /* Mission.cs
+         * Creates Logistic objects to represent every possible chapter and episode
+         * Encorages reuse of code so I dont have to have the values every time I create a Mission based off
+         * the dropdowns in Form.cs
+         */
+        
+        //Enumeration for the different kinds of drops
+        //Stopped using them after a while because its different from how enum is used in c++
+        public enum Drop_ids
         {
             NO_DROP = 0,
             TDOLL_CONTRACT,
@@ -24,6 +32,7 @@ namespace GFResources
         public static Drop construct;
         public static Drop repair;
         public static Drop token;
+        //Empty mission is a holder to refer to rather than null, so we dont get NullPtrEx
         public Logistic emptyMission;
         //Chapter 0
         public Logistic c0e1;
@@ -81,14 +90,16 @@ namespace GFResources
         public Logistic c10e3;
         public Logistic c10e4;
 
+        //Mission contructor
+        //Called from Form.cs, sets up all the Logistic objects, no parameters as we dont need them
         public Mission()
         {
-            emptyDrop = new Drop("", (int)drop_ids.NO_DROP);
-            tDoll = new Drop("T-Doll Contact", (int)drop_ids.TDOLL_CONTRACT);
-            equip = new Drop("Equipment Contract", (int)drop_ids.EQUPIPMENT_CONTRACT);
-            construct = new Drop("Instant Construction", (int)drop_ids.INSTANT_CONSTUCTION);
-            repair = new Drop("Instant Repair", (int)drop_ids.INSTANT_REPAIR);
-            token = new Drop("Token", (int)drop_ids.TOKEN);
+            emptyDrop = new Drop("", (int)Drop_ids.NO_DROP);
+            tDoll = new Drop("T-Doll Contact", (int)Drop_ids.TDOLL_CONTRACT);
+            equip = new Drop("Equipment Contract", (int)Drop_ids.EQUPIPMENT_CONTRACT);
+            construct = new Drop("Instant Construction", (int)Drop_ids.INSTANT_CONSTUCTION);
+            repair = new Drop("Instant Repair", (int)Drop_ids.INSTANT_REPAIR);
+            token = new Drop("Token", (int)Drop_ids.TOKEN);
             //White = tdoll, Blue = equipment, Orange = construct, Green = repair, Dot = token 
             emptyMission = new Logistic(0, 0, 0, 0, 0);
             //Chapter 0

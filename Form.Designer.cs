@@ -43,6 +43,7 @@
             this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.howToUseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxDesired = new System.Windows.Forms.GroupBox();
             this.numManpowerDesired = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,6 +54,10 @@
             this.numPartsDesired = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBoxLogistics = new System.Windows.Forms.GroupBox();
+            this.labelE4Rewards = new System.Windows.Forms.Label();
+            this.labelE3Rewards = new System.Windows.Forms.Label();
+            this.labelE2Rewards = new System.Windows.Forms.Label();
+            this.labelE1Rewards = new System.Windows.Forms.Label();
             this.labelHours = new System.Windows.Forms.Label();
             this.numHours = new System.Windows.Forms.NumericUpDown();
             this.labelE4Resources = new System.Windows.Forms.Label();
@@ -72,9 +77,10 @@
             this.comboE1Chapter = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.buttonCalculate = new System.Windows.Forms.Button();
-            this.labelOutput = new System.Windows.Forms.Label();
+            this.labelMinOutput = new System.Windows.Forms.Label();
             this.labelMaterials = new System.Windows.Forms.Label();
-            this.labelOutputDrops = new System.Windows.Forms.Label();
+            this.labelMaxOutput = new System.Windows.Forms.Label();
+            this.checkBoxGreat = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numManpower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numAmmo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRations)).BeginInit();
@@ -205,7 +211,7 @@
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip.Size = new System.Drawing.Size(834, 24);
+            this.menuStrip.Size = new System.Drawing.Size(818, 24);
             this.menuStrip.TabIndex = 9;
             this.menuStrip.Text = "menu";
             // 
@@ -222,12 +228,13 @@
             this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
             this.resetToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.resetToolStripMenuItem.Text = "Reset";
-            this.resetToolStripMenuItem.Click += new System.EventHandler(this.resetToolStripMenuItem_Click);
+            this.resetToolStripMenuItem.Click += new System.EventHandler(this.ToolStripReset_Clicked);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem1});
+            this.aboutToolStripMenuItem1,
+            this.howToUseToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.aboutToolStripMenuItem.Text = "Help";
@@ -235,9 +242,16 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(135, 22);
             this.aboutToolStripMenuItem1.Text = "About";
-            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuAbout_Clicked);
+            // 
+            // howToUseToolStripMenuItem
+            // 
+            this.howToUseToolStripMenuItem.Name = "howToUseToolStripMenuItem";
+            this.howToUseToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.howToUseToolStripMenuItem.Text = "How to Use";
+            this.howToUseToolStripMenuItem.Click += new System.EventHandler(this.ToolStripHowToUse_Clicked);
             // 
             // groupBoxDesired
             // 
@@ -348,6 +362,11 @@
             // 
             // groupBoxLogistics
             // 
+            this.groupBoxLogistics.Controls.Add(this.checkBoxGreat);
+            this.groupBoxLogistics.Controls.Add(this.labelE4Rewards);
+            this.groupBoxLogistics.Controls.Add(this.labelE3Rewards);
+            this.groupBoxLogistics.Controls.Add(this.labelE2Rewards);
+            this.groupBoxLogistics.Controls.Add(this.labelE1Rewards);
             this.groupBoxLogistics.Controls.Add(this.labelHours);
             this.groupBoxLogistics.Controls.Add(this.numHours);
             this.groupBoxLogistics.Controls.Add(this.labelE4Resources);
@@ -366,19 +385,55 @@
             this.groupBoxLogistics.Controls.Add(this.comboE1Map);
             this.groupBoxLogistics.Controls.Add(this.comboE1Chapter);
             this.groupBoxLogistics.Controls.Add(this.label5);
-            this.groupBoxLogistics.Location = new System.Drawing.Point(12, 143);
+            this.groupBoxLogistics.Location = new System.Drawing.Point(12, 157);
             this.groupBoxLogistics.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBoxLogistics.Name = "groupBoxLogistics";
             this.groupBoxLogistics.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBoxLogistics.Size = new System.Drawing.Size(783, 366);
+            this.groupBoxLogistics.Size = new System.Drawing.Size(783, 376);
             this.groupBoxLogistics.TabIndex = 10;
             this.groupBoxLogistics.TabStop = false;
             this.groupBoxLogistics.Text = "Logistics";
             // 
+            // labelE4Rewards
+            // 
+            this.labelE4Rewards.AutoSize = true;
+            this.labelE4Rewards.Location = new System.Drawing.Point(149, 338);
+            this.labelE4Rewards.Name = "labelE4Rewards";
+            this.labelE4Rewards.Size = new System.Drawing.Size(41, 18);
+            this.labelE4Rewards.TabIndex = 21;
+            this.labelE4Rewards.Text = "blank";
+            // 
+            // labelE3Rewards
+            // 
+            this.labelE3Rewards.AutoSize = true;
+            this.labelE3Rewards.Location = new System.Drawing.Point(149, 260);
+            this.labelE3Rewards.Name = "labelE3Rewards";
+            this.labelE3Rewards.Size = new System.Drawing.Size(41, 18);
+            this.labelE3Rewards.TabIndex = 20;
+            this.labelE3Rewards.Text = "blank";
+            // 
+            // labelE2Rewards
+            // 
+            this.labelE2Rewards.AutoSize = true;
+            this.labelE2Rewards.Location = new System.Drawing.Point(149, 182);
+            this.labelE2Rewards.Name = "labelE2Rewards";
+            this.labelE2Rewards.Size = new System.Drawing.Size(41, 18);
+            this.labelE2Rewards.TabIndex = 19;
+            this.labelE2Rewards.Text = "blank";
+            // 
+            // labelE1Rewards
+            // 
+            this.labelE1Rewards.AutoSize = true;
+            this.labelE1Rewards.Location = new System.Drawing.Point(149, 104);
+            this.labelE1Rewards.Name = "labelE1Rewards";
+            this.labelE1Rewards.Size = new System.Drawing.Size(41, 18);
+            this.labelE1Rewards.TabIndex = 18;
+            this.labelE1Rewards.Text = "blank";
+            // 
             // labelHours
             // 
             this.labelHours.AutoSize = true;
-            this.labelHours.Location = new System.Drawing.Point(8, 34);
+            this.labelHours.Location = new System.Drawing.Point(10, 25);
             this.labelHours.Name = "labelHours";
             this.labelHours.Size = new System.Drawing.Size(56, 18);
             this.labelHours.TabIndex = 17;
@@ -386,7 +441,7 @@
             // 
             // numHours
             // 
-            this.numHours.Location = new System.Drawing.Point(67, 32);
+            this.numHours.Location = new System.Drawing.Point(69, 23);
             this.numHours.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.numHours.Maximum = new decimal(new int[] {
             168,
@@ -399,19 +454,19 @@
             0,
             0});
             this.numHours.Name = "numHours";
-            this.numHours.Size = new System.Drawing.Size(70, 26);
+            this.numHours.Size = new System.Drawing.Size(57, 26);
             this.numHours.TabIndex = 16;
             this.numHours.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numHours.ValueChanged += new System.EventHandler(this.numHours_ValueChanged);
+            this.numHours.ValueChanged += new System.EventHandler(this.NumHours_ValueChanged);
             // 
             // labelE4Resources
             // 
             this.labelE4Resources.AutoSize = true;
-            this.labelE4Resources.Location = new System.Drawing.Point(297, 305);
+            this.labelE4Resources.Location = new System.Drawing.Point(149, 308);
             this.labelE4Resources.Name = "labelE4Resources";
             this.labelE4Resources.Size = new System.Drawing.Size(41, 18);
             this.labelE4Resources.TabIndex = 15;
@@ -425,7 +480,7 @@
             "Episode 2",
             "Episode 3",
             "Episode 4"});
-            this.comboE4Map.Location = new System.Drawing.Point(153, 302);
+            this.comboE4Map.Location = new System.Drawing.Point(5, 335);
             this.comboE4Map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE4Map.Name = "comboE4Map";
             this.comboE4Map.Size = new System.Drawing.Size(138, 26);
@@ -446,16 +501,16 @@
             "Chapter 8",
             "Chapter 9",
             "Chapter 10"});
-            this.comboE4Chapter.Location = new System.Drawing.Point(8, 302);
+            this.comboE4Chapter.Location = new System.Drawing.Point(6, 305);
             this.comboE4Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE4Chapter.Name = "comboE4Chapter";
-            this.comboE4Chapter.Size = new System.Drawing.Size(138, 26);
+            this.comboE4Chapter.Size = new System.Drawing.Size(137, 26);
             this.comboE4Chapter.TabIndex = 13;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 282);
+            this.label11.Location = new System.Drawing.Point(3, 285);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 18);
             this.label11.TabIndex = 12;
@@ -464,7 +519,7 @@
             // labelE3Resources
             // 
             this.labelE3Resources.AutoSize = true;
-            this.labelE3Resources.Location = new System.Drawing.Point(298, 236);
+            this.labelE3Resources.Location = new System.Drawing.Point(149, 230);
             this.labelE3Resources.Name = "labelE3Resources";
             this.labelE3Resources.Size = new System.Drawing.Size(41, 18);
             this.labelE3Resources.TabIndex = 11;
@@ -478,7 +533,7 @@
             "Episode 2",
             "Episode 3",
             "Episode 4"});
-            this.comboE3Map.Location = new System.Drawing.Point(152, 233);
+            this.comboE3Map.Location = new System.Drawing.Point(5, 257);
             this.comboE3Map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE3Map.Name = "comboE3Map";
             this.comboE3Map.Size = new System.Drawing.Size(138, 26);
@@ -499,7 +554,7 @@
             "Chapter 8",
             "Chapter 9",
             "Chapter 10"});
-            this.comboE3Chapter.Location = new System.Drawing.Point(8, 233);
+            this.comboE3Chapter.Location = new System.Drawing.Point(5, 227);
             this.comboE3Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE3Chapter.Name = "comboE3Chapter";
             this.comboE3Chapter.Size = new System.Drawing.Size(138, 26);
@@ -508,7 +563,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(8, 213);
+            this.label9.Location = new System.Drawing.Point(5, 207);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(70, 18);
             this.label9.TabIndex = 8;
@@ -517,7 +572,7 @@
             // labelE2Resources
             // 
             this.labelE2Resources.AutoSize = true;
-            this.labelE2Resources.Location = new System.Drawing.Point(298, 163);
+            this.labelE2Resources.Location = new System.Drawing.Point(149, 152);
             this.labelE2Resources.Name = "labelE2Resources";
             this.labelE2Resources.Size = new System.Drawing.Size(41, 18);
             this.labelE2Resources.TabIndex = 7;
@@ -531,10 +586,10 @@
             "Episode 2",
             "Episode 3",
             "Episode 4"});
-            this.comboE2Map.Location = new System.Drawing.Point(152, 160);
+            this.comboE2Map.Location = new System.Drawing.Point(6, 179);
             this.comboE2Map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE2Map.Name = "comboE2Map";
-            this.comboE2Map.Size = new System.Drawing.Size(138, 26);
+            this.comboE2Map.Size = new System.Drawing.Size(137, 26);
             this.comboE2Map.TabIndex = 6;
             // 
             // comboE2Chapter
@@ -552,16 +607,16 @@
             "Chapter 8",
             "Chapter 9",
             "Chapter 10"});
-            this.comboE2Chapter.Location = new System.Drawing.Point(8, 160);
+            this.comboE2Chapter.Location = new System.Drawing.Point(6, 149);
             this.comboE2Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE2Chapter.Name = "comboE2Chapter";
-            this.comboE2Chapter.Size = new System.Drawing.Size(138, 26);
+            this.comboE2Chapter.Size = new System.Drawing.Size(137, 26);
             this.comboE2Chapter.TabIndex = 5;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 140);
+            this.label7.Location = new System.Drawing.Point(5, 129);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(70, 18);
             this.label7.TabIndex = 4;
@@ -570,7 +625,7 @@
             // labelE1Resources
             // 
             this.labelE1Resources.AutoSize = true;
-            this.labelE1Resources.Location = new System.Drawing.Point(298, 93);
+            this.labelE1Resources.Location = new System.Drawing.Point(149, 74);
             this.labelE1Resources.Name = "labelE1Resources";
             this.labelE1Resources.Size = new System.Drawing.Size(41, 18);
             this.labelE1Resources.TabIndex = 3;
@@ -584,7 +639,7 @@
             "Episode 2",
             "Episode 3",
             "Episode 4"});
-            this.comboE1Map.Location = new System.Drawing.Point(152, 90);
+            this.comboE1Map.Location = new System.Drawing.Point(5, 101);
             this.comboE1Map.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE1Map.Name = "comboE1Map";
             this.comboE1Map.Size = new System.Drawing.Size(138, 26);
@@ -605,7 +660,7 @@
             "Chapter 8",
             "Chapter 9",
             "Chapter 10"});
-            this.comboE1Chapter.Location = new System.Drawing.Point(8, 90);
+            this.comboE1Chapter.Location = new System.Drawing.Point(5, 71);
             this.comboE1Chapter.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboE1Chapter.Name = "comboE1Chapter";
             this.comboE1Chapter.Size = new System.Drawing.Size(138, 26);
@@ -614,7 +669,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(8, 70);
+            this.label5.Location = new System.Drawing.Point(5, 51);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(70, 18);
             this.label5.TabIndex = 0;
@@ -622,51 +677,62 @@
             // 
             // buttonCalculate
             // 
-            this.buttonCalculate.Location = new System.Drawing.Point(14, 513);
+            this.buttonCalculate.Location = new System.Drawing.Point(12, 537);
             this.buttonCalculate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonCalculate.Name = "buttonCalculate";
             this.buttonCalculate.Size = new System.Drawing.Size(99, 37);
             this.buttonCalculate.TabIndex = 11;
             this.buttonCalculate.Text = "Calculate";
             this.buttonCalculate.UseVisualStyleBackColor = true;
-            this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
+            this.buttonCalculate.Click += new System.EventHandler(this.ButtonCalculate_Click);
             // 
-            // labelOutput
+            // labelMinOutput
             // 
-            this.labelOutput.AutoSize = true;
-            this.labelOutput.Location = new System.Drawing.Point(17, 593);
-            this.labelOutput.Name = "labelOutput";
-            this.labelOutput.Size = new System.Drawing.Size(41, 18);
-            this.labelOutput.TabIndex = 12;
-            this.labelOutput.Text = "blank";
+            this.labelMinOutput.AutoSize = true;
+            this.labelMinOutput.Location = new System.Drawing.Point(16, 614);
+            this.labelMinOutput.Name = "labelMinOutput";
+            this.labelMinOutput.Size = new System.Drawing.Size(41, 18);
+            this.labelMinOutput.TabIndex = 12;
+            this.labelMinOutput.Text = "blank";
             // 
             // labelMaterials
             // 
             this.labelMaterials.AutoSize = true;
-            this.labelMaterials.Location = new System.Drawing.Point(18, 565);
+            this.labelMaterials.Location = new System.Drawing.Point(17, 586);
             this.labelMaterials.Name = "labelMaterials";
             this.labelMaterials.Size = new System.Drawing.Size(41, 18);
             this.labelMaterials.TabIndex = 13;
             this.labelMaterials.Text = "blank";
             // 
-            // labelOutputDrops
+            // labelMaxOutput
             // 
-            this.labelOutputDrops.AutoSize = true;
-            this.labelOutputDrops.Location = new System.Drawing.Point(17, 622);
-            this.labelOutputDrops.Name = "labelOutputDrops";
-            this.labelOutputDrops.Size = new System.Drawing.Size(41, 18);
-            this.labelOutputDrops.TabIndex = 14;
-            this.labelOutputDrops.Text = "blank";
+            this.labelMaxOutput.AutoSize = true;
+            this.labelMaxOutput.Location = new System.Drawing.Point(16, 643);
+            this.labelMaxOutput.Name = "labelMaxOutput";
+            this.labelMaxOutput.Size = new System.Drawing.Size(41, 18);
+            this.labelMaxOutput.TabIndex = 14;
+            this.labelMaxOutput.Text = "blank";
+            // 
+            // checkBoxGreat
+            // 
+            this.checkBoxGreat.AutoSize = true;
+            this.checkBoxGreat.Location = new System.Drawing.Point(152, 27);
+            this.checkBoxGreat.Name = "checkBoxGreat";
+            this.checkBoxGreat.Size = new System.Drawing.Size(162, 22);
+            this.checkBoxGreat.TabIndex = 22;
+            this.checkBoxGreat.Text = "Show Great Reward?";
+            this.checkBoxGreat.UseVisualStyleBackColor = true;
+            this.checkBoxGreat.CheckedChanged += new System.EventHandler(this.checkBoxGreat_CheckedChanged);
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(834, 683);
-            this.Controls.Add(this.labelOutputDrops);
+            this.ClientSize = new System.Drawing.Size(818, 671);
+            this.Controls.Add(this.labelMaxOutput);
             this.Controls.Add(this.labelMaterials);
-            this.Controls.Add(this.labelOutput);
+            this.Controls.Add(this.labelMinOutput);
             this.Controls.Add(this.buttonCalculate);
             this.Controls.Add(this.groupBoxLogistics);
             this.Controls.Add(this.groupBoxDesired);
@@ -731,7 +797,7 @@
         private System.Windows.Forms.ComboBox comboE1Map;
         private System.Windows.Forms.Label labelE1Resources;
         private System.Windows.Forms.Button buttonCalculate;
-        private System.Windows.Forms.Label labelOutput;
+        private System.Windows.Forms.Label labelMinOutput;
         private System.Windows.Forms.Label labelE4Resources;
         private System.Windows.Forms.ComboBox comboE4Map;
         private System.Windows.Forms.ComboBox comboE4Chapter;
@@ -747,7 +813,13 @@
         private System.Windows.Forms.Label labelMaterials;
         private System.Windows.Forms.Label labelHours;
         private System.Windows.Forms.NumericUpDown numHours;
-        private System.Windows.Forms.Label labelOutputDrops;
+        private System.Windows.Forms.Label labelMaxOutput;
+        private System.Windows.Forms.Label labelE4Rewards;
+        private System.Windows.Forms.Label labelE3Rewards;
+        private System.Windows.Forms.Label labelE2Rewards;
+        private System.Windows.Forms.Label labelE1Rewards;
+        private System.Windows.Forms.ToolStripMenuItem howToUseToolStripMenuItem;
+        private System.Windows.Forms.CheckBox checkBoxGreat;
     }
 }
 

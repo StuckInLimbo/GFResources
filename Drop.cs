@@ -8,18 +8,14 @@ namespace GFResources
 {
     class Drop
     {
-        public enum drop_ids
-        {
-            NO_DROP = 0,
-            TDOLL_CONTRACT,
-            EQUPIPMENT_CONTRACT,
-            INSTANT_CONSTUCTION,
-            INSTANT_REPAIR,
-            TOKEN
-        };
+        /* Drop.cs
+         * Class to handle storage of potential reward information
+         * Called typically using Drop("Name of Drop", IDNUM);
+         */
 
         private String name;
         private int id;
+        //Drops can have hours, for when we're calculation potential drops/h
         private double hours;
 
         public Drop(String n, int idNum)
