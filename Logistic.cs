@@ -18,14 +18,14 @@ namespace GFResources
         private int ammunition;
         private int rations;
         private int parts;
-        private float time;
+        private double time;
         private int numOfDrops;
         private Drop drop1;
         private Drop drop2;
 
 
         //Set method to assign all values, called from contstructor
-        private void Set(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1, Drop d2)
+        private void Set(int manp, int ammo, int ration, int part, double timetaken, int numDrops, Drop d1, Drop d2)
         {
             manpower = manp;
             ammunition = ammo;
@@ -39,19 +39,19 @@ namespace GFResources
 
         //Contructors
         //Constructor with no drops
-        public Logistic(int manp, int ammo, int ration, int part, float timetaken)
+        public Logistic(int manp, int ammo, int ration, int part, double timetaken)
         {
             Set(manp, ammo, ration, part, timetaken, 0, emptyDrop, emptyDrop);
         }
 
         //Constructor with 1 drop
-        public Logistic(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1)
+        public Logistic(int manp, int ammo, int ration, int part, double timetaken, int numDrops, Drop d1)
         {
             Set(manp, ammo, ration, part, timetaken, numDrops, d1, emptyDrop);
         }
 
         //Constructor with 2 drops
-        public Logistic(int manp, int ammo, int ration, int part, float timetaken, int numDrops, Drop d1, Drop d2)
+        public Logistic(int manp, int ammo, int ration, int part, double timetaken, int numDrops, Drop d1, Drop d2)
         {
             Set(manp, ammo, ration, part, timetaken, numDrops, d1, d2);
         }
@@ -97,12 +97,12 @@ namespace GFResources
             parts = part;
         }
 
-        public float GetTime()
+        public double GetTime()
         {
             return time;
         }
 
-        public void SetTime(float t)
+        public void SetTime(double t)
         {
             time = t;
         }

@@ -10,22 +10,10 @@ namespace GFResources
     {
         /* Mission.cs
          * Creates Logistic objects to represent every possible chapter and episode
-         * Encorages reuse of code so I dont have to have the values every time I create a Mission based off
-         * the dropdowns in Form.cs
+         * from the dropdowns in Form.cs
          */
         
-        //Enumeration for the different kinds of drops
-        //Stopped using them after a while because its different from how enum is used in c++
-        public enum Drop_ids
-        {
-            NO_DROP = 0,
-            TDOLL_CONTRACT,
-            EQUPIPMENT_CONTRACT,
-            INSTANT_CONSTUCTION,
-            INSTANT_REPAIR,
-            TOKEN
-        };
-
+        //Drops so we dont get nullptr, and dont have to remake them later
         public static Drop emptyDrop;
         public static Drop tDoll;
         public static Drop equip;
@@ -94,12 +82,12 @@ namespace GFResources
         //Called from Form.cs, sets up all the Logistic objects, no parameters as we dont need them
         public Mission()
         {
-            emptyDrop = new Drop("", (int)Drop_ids.NO_DROP);
-            tDoll = new Drop("T-Doll Contact", (int)Drop_ids.TDOLL_CONTRACT);
-            equip = new Drop("Equipment Contract", (int)Drop_ids.EQUPIPMENT_CONTRACT);
-            construct = new Drop("Instant Construction", (int)Drop_ids.INSTANT_CONSTUCTION);
-            repair = new Drop("Instant Repair", (int)Drop_ids.INSTANT_REPAIR);
-            token = new Drop("Token", (int)Drop_ids.TOKEN);
+            emptyDrop = new Drop("", 0);
+            tDoll = new Drop("T-Doll Contact", 1);
+            equip = new Drop("Equipment Contract", 2);
+            construct = new Drop("Instant Construction", 3);
+            repair = new Drop("Instant Repair", 4);
+            token = new Drop("Token", 5);
             //White = tdoll, Blue = equipment, Orange = construct, Green = repair, Dot = token 
             emptyMission = new Logistic(0, 0, 0, 0, 0);
             //Chapter 0

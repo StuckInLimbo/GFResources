@@ -66,6 +66,8 @@ namespace GFResources
 
         private void checkBoxGreat_CheckedChanged(object sender, EventArgs e)
         {
+            labelMinOutput.Text = "";
+            labelMaxOutput.Text = "";
             CalcLogistics();
         }
 
@@ -220,7 +222,7 @@ namespace GFResources
             labelE1Rewards.Text = "";
 
             //Resources
-            //Get a Logistic from our selected chapter and map, trust me the system before this was really shit.
+            //Get a Logistic from our selected chapter and map, they are stored locally for debugging reasons
             logi = GetLogisticFromNum(comboE1Chapter.SelectedIndex, comboE1Map.SelectedIndex);
             man = logi.GetManpower();
             ammo = logi.GetAmmo();
@@ -234,11 +236,12 @@ namespace GFResources
                 " | Parts: " + parts + " | Time: " + sTime;
 
             //Drops
-            //Basically we get the drop from the Logisitic,
+            //Basically we get the drop from the Logisitic, if no drop then emptyDrop
+            //We can call it this way, due to the static nature of the variable
             if(logi.GetNumOfDrops() == 1)
             {
                 d1 = logi.GetDrop(1);
-                d2 = new Drop("", 0);
+                d2 = Mission.emptyDrop;
             }
             else if (logi.GetNumOfDrops() == 2)
             {
@@ -247,14 +250,15 @@ namespace GFResources
             }
             else
             {
-                d1 = new Drop("", 0);
-                d2 = new Drop("", 0);
+                d1 = Mission.emptyDrop;
+                d2 = Mission.emptyDrop;
             }
+
             labelE1Rewards.Text = "Potential Rewards: " + GetTextFromDrop(d1) + GetTextFromDrop(d2);
 
             // Okay, to explain the array: when we get the total of all resources, gotta send it back somehow and 
             // normally we can't return > 1 object, so we return an array containing all the useful stuff
-            // time is an int now, don't ask.
+            // time is an int now, since it doesnt have decimal places/etc.
             int[] data = new int[] { man, ammo, rations, parts, (int)time};
             return data;
         }
@@ -280,10 +284,10 @@ namespace GFResources
                 " | Parts: " + parts + " | Time: " + sTime;
 
             //Drops
-            if (logi.GetNumOfDrops() == 1)
+            if(logi.GetNumOfDrops() == 1)
             {
                 d1 = logi.GetDrop(1);
-                d2 = new Drop("", 0);
+                d2 = Mission.emptyDrop;
             }
             else if (logi.GetNumOfDrops() == 2)
             {
@@ -292,9 +296,10 @@ namespace GFResources
             }
             else
             {
-                d1 = new Drop("", 0);
-                d2 = new Drop("", 0);
+                d1 = Mission.emptyDrop;
+                d2 = Mission.emptyDrop;
             }
+
             labelE2Rewards.Text = "Potential Rewards: " + GetTextFromDrop(d1) + GetTextFromDrop(d2);
 
             int[] data = new int[] { man, ammo, rations, parts, (int)time };
@@ -326,7 +331,7 @@ namespace GFResources
             if (logi.GetNumOfDrops() == 1)
             {
                 d1 = logi.GetDrop(1);
-                d2 = new Drop("", 0);
+                d2 = Mission.emptyDrop;
             }
             else if (logi.GetNumOfDrops() == 2)
             {
@@ -335,9 +340,10 @@ namespace GFResources
             }
             else
             {
-                d1 = new Drop("", 0);
-                d2 = new Drop("", 0);
+                d1 = Mission.emptyDrop;
+                d2 = Mission.emptyDrop;
             }
+
             labelE3Rewards.Text = "Potential Rewards: " + GetTextFromDrop(d1) + GetTextFromDrop(d2);
 
             int[] data = new int[] { man, ammo, rations, parts, (int)time };
@@ -368,7 +374,7 @@ namespace GFResources
             if (logi.GetNumOfDrops() == 1)
             {
                 d1 = logi.GetDrop(1);
-                d2 = new Drop("", 0);
+                d2 = Mission.emptyDrop;
             }
             else if (logi.GetNumOfDrops() == 2)
             {
@@ -377,9 +383,10 @@ namespace GFResources
             }
             else
             {
-                d1 = new Drop("", 0);
-                d2 = new Drop("", 0);
+                d1 = Mission.emptyDrop;
+                d2 = Mission.emptyDrop;
             }
+
             labelE4Rewards.Text = "Potential Rewards: " + GetTextFromDrop(d1) + GetTextFromDrop(d2);
 
             int[] data = new int[] { man, ammo, rations, parts, (int)time };
@@ -695,36 +702,14 @@ namespace GFResources
         }
 
         //Returns a String containing the output for the potential rewards.
-        //I also just realised I could have used d.GetName() + " ", 
-        //so yes I feel stupid. #H A R D C O D E D
-        private String GetTextFromDrop(Drop d)
+        private String GetTextFromDrop(Drop drop)
         {
             String s = "";
-            if(d == null)
+            if(drop == null)
             {
                 return "";
             }
-            switch(d.GetID())
-            {
-                case 0:
-                    s = s + "";
-                    break;
-                case 1:
-                    s = s + "T-Doll Contact ";
-                    break;
-                case 2:
-                    s = s + "Equipment Contract ";
-                    break;
-                case 3:
-                    s = s + "Instant Construction ";
-                    break;
-                case 4:
-                    s = s + "Instant Repair ";
-                    break;
-                case 5:
-                    s = s + "Token ";
-                    break;
-            }
+            s = s + drop.GetName() + " ";
             return s;
         }
 
