@@ -12,10 +12,10 @@ namespace GFResources
 {
     public partial class Form : System.Windows.Forms.Form
     {
-        /* Form.cs
-         * Windows-made file to handle all custom Form methods
-         * We're going to use it to run some of our own code
-         */
+        ///<summary>
+        ///Windows-made file to handle all custom Form methods
+        ///We're going to use it to run some of our own code
+        ///</summary>
         
         //Global mission object so we can refer to all the missions in the Mission.cs file (Unassigned until Form.cs's constructer is run)
         //We store this variable and assign it early so it doesnt lag out when we click calculate, because if it was only stored in 
@@ -40,6 +40,7 @@ namespace GFResources
             System.Windows.Forms.MessageBox.Show("Resources goes in first groups, echelons and their \n" +
                 "respective chapters go in the dropdown boxes. \nSelect number of hours to farm, " +
                 "it will show potential reward.", "How to Use GF Calculator");
+            GotoSite("https://i.imgur.com/Lpt8Fi2.png");
         }
 
         private void ToolStripReset_Clicked(object sender, EventArgs e)
@@ -224,11 +225,13 @@ namespace GFResources
             //Resources
             //Get a Logistic from our selected chapter and map, they are stored locally for debugging reasons
             logi = GetLogisticFromNum(comboE1Chapter.SelectedIndex, comboE1Map.SelectedIndex);
-            man = logi.GetManpower();
-            ammo = logi.GetAmmo();
-            rations = logi.GetRations();
-            parts = logi.GetParts();
-            time = logi.GetTime();
+
+            man = logi.Manpower;
+            ammo = logi.Ammunition;
+            rations = logi.Rations;
+            parts = logi.Parts;
+            time = logi.Time;
+
             //We have to divide by 60, because we are in minutes, needs to be hours
             String sTime = GetTimeFormat(time / 60);
 
@@ -238,12 +241,12 @@ namespace GFResources
             //Drops
             //Basically we get the drop from the Logisitic, if no drop then emptyDrop
             //We can call it this way, due to the static nature of the variable
-            if(logi.GetNumOfDrops() == 1)
+            if(logi.NumOfDrops == 1)
             {
                 d1 = logi.GetDrop(1);
                 d2 = Mission.emptyDrop;
             }
-            else if (logi.GetNumOfDrops() == 2)
+            else if (logi.NumOfDrops == 2)
             {
                 d1 = logi.GetDrop(1);
                 d2 = logi.GetDrop(2);
@@ -274,22 +277,25 @@ namespace GFResources
 
             //Resources
             logi = GetLogisticFromNum(comboE2Chapter.SelectedIndex, comboE2Map.SelectedIndex);
-            man = logi.GetManpower();
-            ammo = logi.GetAmmo();
-            rations = logi.GetRations();
-            parts = logi.GetParts();
-            time = logi.GetTime();
+
+            man = logi.Manpower;
+            ammo = logi.Ammunition;
+            rations = logi.Rations;
+            parts = logi.Parts;
+            time = logi.Time;
+
             String sTime = GetTimeFormat(time / 60);
+
             labelE2Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: " + rations +
                 " | Parts: " + parts + " | Time: " + sTime;
 
             //Drops
-            if(logi.GetNumOfDrops() == 1)
+            if (logi.NumOfDrops == 1)
             {
                 d1 = logi.GetDrop(1);
                 d2 = Mission.emptyDrop;
             }
-            else if (logi.GetNumOfDrops() == 2)
+            else if (logi.NumOfDrops == 2)
             {
                 d1 = logi.GetDrop(1);
                 d2 = logi.GetDrop(2);
@@ -317,23 +323,25 @@ namespace GFResources
 
             //Resources
             logi = GetLogisticFromNum(comboE3Chapter.SelectedIndex, comboE3Map.SelectedIndex);
-            man = logi.GetManpower();
-            ammo = logi.GetAmmo();
-            rations = logi.GetRations();
-            parts = logi.GetParts();
-            time = logi.GetTime();
+
+            man = logi.Manpower;
+            ammo = logi.Ammunition;
+            rations = logi.Rations;
+            parts = logi.Parts;
+            time = logi.Time;
+
             String sTime = GetTimeFormat(time / 60);
 
             labelE3Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: " + rations + 
                 " | Parts: " + parts + " | Time: " + sTime;
 
             //Drops
-            if (logi.GetNumOfDrops() == 1)
+            if (logi.NumOfDrops == 1)
             {
                 d1 = logi.GetDrop(1);
                 d2 = Mission.emptyDrop;
             }
-            else if (logi.GetNumOfDrops() == 2)
+            else if (logi.NumOfDrops == 2)
             {
                 d1 = logi.GetDrop(1);
                 d2 = logi.GetDrop(2);
@@ -361,22 +369,24 @@ namespace GFResources
 
             //Resources
             logi = GetLogisticFromNum(comboE4Chapter.SelectedIndex, comboE4Map.SelectedIndex);
-            man = logi.GetManpower();
-            ammo = logi.GetAmmo();
-            rations = logi.GetRations();
-            parts = logi.GetParts();
-            time = logi.GetTime();
+
+            man = logi.Manpower;
+            ammo = logi.Ammunition;
+            rations = logi.Rations;
+            parts = logi.Parts;
+            time = logi.Time;
+
             String sTime = GetTimeFormat(time / 60);
 
             labelE4Resources.Text = "" + "ManP: " + man + " | Ammo: " + ammo + " | Rations: " + rations + " | Parts: " + parts + " | Time: " + sTime;
 
             //Drops
-            if (logi.GetNumOfDrops() == 1)
+            if (logi.NumOfDrops == 1)
             {
                 d1 = logi.GetDrop(1);
                 d2 = Mission.emptyDrop;
             }
-            else if (logi.GetNumOfDrops() == 2)
+            else if (logi.NumOfDrops == 2)
             {
                 d1 = logi.GetDrop(1);
                 d2 = logi.GetDrop(2);
@@ -437,41 +447,19 @@ namespace GFResources
             switch(idNum)
             {
                 case 0:
-                    return new Drop("", 0);
+                    return Mission.emptyDrop;
                 case 1:
-                    return new Drop("T-Doll Contact", 1);
+                    return Mission.tDoll;
                 case 2:
-                    return new Drop("Equipment Contract", 2);
+                    return Mission.equip;
                 case 3:
-                    return new Drop("Instant Construction", 3);
+                    return Mission.construct;
                 case 4:
-                    return new Drop("Instant Repair", 4);
+                    return Mission.repair;
                 case 5:
-                    return new Drop("Token", 5);
+                    return Mission.token;
                 default:
-                    return new Drop("", 0);
-            }
-        }
-
-        //Returns a Drop form a specified ID, and adds the hours to it
-        private Drop GetDropFromID(int idNum, double hours)
-        {
-            switch (idNum)
-            {
-                case 0:
-                    return new Drop("", 0, 0);
-                case 1:
-                    return new Drop("T-Doll Contact", 1, hours);
-                case 2:
-                    return new Drop("Equipment Contract", 2, hours);
-                case 3:
-                    return new Drop("Instant Construction", 3, hours);
-                case 4:
-                    return new Drop("Instant Repair", 4, hours);
-                case 5:
-                    return new Drop("Token", 5, hours);
-                default:
-                    return new Drop("", 0, 0);
+                    return Mission.emptyDrop;
             }
         }
 
@@ -709,7 +697,7 @@ namespace GFResources
             {
                 return "";
             }
-            s = s + drop.GetName() + " ";
+            s = s + drop.Name + " ";
             return s;
         }
 
@@ -733,6 +721,11 @@ namespace GFResources
                 s = s + d + " minutes(s) ";
             }
             return s;
+        }
+
+        private void GotoSite(string url)
+        {
+            System.Diagnostics.Process.Start(url);
         }
     }
 }

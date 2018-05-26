@@ -8,53 +8,23 @@ namespace GFResources
 {
     class Drop
     {
-        /* Drop.cs
-         * Class to handle storage of potential reward information
-         * Called typically using Drop("Name of Drop", IDNUM);
-         */
+        /// <summary>
+        /// Handles potential reward information for Logistics.
+        /// </summary>
 
-        private String name;
-        private int id;
-        //Drops can have hours, for when we're calculation potential drops/h
-        private double hours;
+        public String Name { get; set; }
+        public int ID { get; set; }
 
         public Drop(String n, int idNum)
         {
-            name = n;
-            id = idNum;
-            hours = 0;
+            Name = n;
+            ID = idNum;
         }
 
-        public Drop(String n, int idNum, double h)
+        //For Debugging reasons, shows details in the debugger
+        public override string ToString()
         {
-            name = n;
-            id = idNum;
-            hours = h;
-        }
-
-        public String GetName()
-        {
-            return name;
-        }
-
-        public void SetName(String n)
-        {
-            name = n;
-        }
-
-        public int GetID()
-        {
-            return id;
-        }
-
-        public void SetID(int i)
-        {
-            id = i;
-        }
-
-        public double GetHours()
-        {
-            return hours;
+            return "Name: " + Name + ", ID: " + ID;
         }
     }
 }

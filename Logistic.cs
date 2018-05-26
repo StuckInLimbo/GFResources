@@ -8,18 +8,18 @@ namespace GFResources
 {
     class Logistic
     {
-        /* Logistic.cs
-         * Class to handle storing all Mission info in nice, convinent objects
-         */
+        /// <summary>
+        /// Handles the storage of all data related to a Mission episode.
+        /// </summary>
 
         //emptyDrop is set for Logistics with no Drops, so we dont get NullPtr
-        private static Drop emptyDrop = new Drop("", 0);
-        private int manpower;
-        private int ammunition;
-        private int rations;
-        private int parts;
-        private double time;
-        private int numOfDrops;
+        private static Drop emptyDrop = Mission.emptyDrop;
+        public int Manpower { get; set; }
+        public int Ammunition { get; set; }
+        public int Rations { get; set; }
+        public int Parts { get; set; }
+        public double Time { get; set; }
+        public int NumOfDrops { get; set; }
         private Drop drop1;
         private Drop drop2;
 
@@ -27,12 +27,12 @@ namespace GFResources
         //Set method to assign all values, called from contstructor
         private void Set(int manp, int ammo, int ration, int part, double timetaken, int numDrops, Drop d1, Drop d2)
         {
-            manpower = manp;
-            ammunition = ammo;
-            rations = ration;
-            parts = part;
-            time = timetaken;
-            numOfDrops = numDrops;
+            Manpower = manp;
+            Ammunition = ammo;
+            Rations = ration;
+            Parts = part;
+            Time = timetaken;
+            NumOfDrops = numDrops;
             drop1 = d1;
             drop2 = d2;
         }
@@ -56,67 +56,6 @@ namespace GFResources
             Set(manp, ammo, ration, part, timetaken, numDrops, d1, d2);
         }
 
-        //Getters and setters
-        public int GetManpower()
-        {
-            return manpower;
-        }
-
-        public void SetManpower(int manp)
-        {
-            manpower = manp;
-        }
-
-        public int GetAmmo()
-        {
-            return ammunition;
-        }
-
-        public void SetAmmo(int ammo)
-        {
-            ammunition = ammo;
-        }
-
-        public int GetRations()
-        {
-            return rations;
-        }
-
-        public void SetRations(int food)
-        {
-            rations = food;
-        }
-
-        public int GetParts()
-        {
-            return parts;
-        }
-
-        public void SetParts(int part)
-        {
-            parts = part;
-        }
-
-        public double GetTime()
-        {
-            return time;
-        }
-
-        public void SetTime(double t)
-        {
-            time = t;
-        }
-
-        public int GetNumOfDrops()
-        {
-            return numOfDrops;
-        }
-
-        public void SetNumOfDrops(int n)
-        {
-            numOfDrops = n;
-        }
-
         public Drop GetDrop(int num)
         {
             if (num == 1)
@@ -133,6 +72,12 @@ namespace GFResources
                 drop1 = d;
             else if (num == 2)
                 drop2 = d;
+        }
+
+        //For Debugging reasons, shows details in the debugger
+        public override string ToString()
+        {
+            return "MP: " + Manpower + ", AMMO: " + Ammunition + ", MRE: " + Rations + ", PRT: " + Parts + ", TIME: " + Time;
         }
     }
 }

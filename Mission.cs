@@ -8,11 +8,11 @@ namespace GFResources
 {
     class Mission
     {
-        /* Mission.cs
-         * Creates Logistic objects to represent every possible chapter and episode
-         * from the dropdowns in Form.cs
-         */
-        
+        /// <summary>
+        /// Creates Logistic objects to represent every possible chapter and episode
+        /// from the dropdowns in Form.cs
+        /// </summary>
+
         //Drops so we dont get nullptr, and dont have to remake them later
         public static Drop emptyDrop;
         public static Drop tDoll;
